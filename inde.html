@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>カリン顔9選</title>
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+
+    body {
+
+      font-family:
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        "Times New Roman",
+        serif;
+
+      text-align: center;
+
+      margin: 0;
+
+      min-height: 100vh;
+
+      padding: 35px 20px 60px;
+
+      color: #5c0018;
+
+      background:
+        radial-gradient(
+          circle at top,
+          #fffafa 0%,
+          #f7e5e8 45%,
+          #e7bdc3 100%
+        );
+
+      position: relative;
+
+      overflow-x: hidden;
+
+    }
+
+
+    /* =========================
+       画面外枠
+       ========================= */
+
+    body::after {
+
+      content: "";
+
+      position: fixed;
+
+      top: 12px;
+      right: 12px;
+      bottom: 12px;
+      left: 12px;
+
+      border: 2px solid rgba(130, 0, 30, 0.35);
+
+      border-radius: 24px;
+
+      pointer-events: none;
+
+      z-index: 0;
+
+    }
+
+
+    /* =========================
+       背景のバラ
+       ========================= */
+
+    body::before {
+
+      content:
+        "🌹　　　　　　　　　　　　　　🌹\A"
+        "　　　　　　🌹　　　　　　　　　　　　　　🌹\A"
+        "🌹　　　　　　　　　　　　　　　　🌹";
+
+      white-space: pre;
+
+      position: fixed;
+
+      top: 25px;
+
+      left: 0;
+
+      width: 100%;
+
+      font-size: 42px;
+
+      line-height: 5;
+
+      opacity: 0.15;
+
+      pointer-events: none;
+
+      z-index: 0;
+
+    }
+
+
+    #game,
+    #result {
+
+      position: relative;
+
+      z-index: 1;
+
+      width: 100%;
+
+      max-width: 850px;
+
+      margin: auto;
+
+    }
+
+
+    /* =========================
+       タイトル
+       ========================= */
+
+    h1 {
+
+      margin-top: 10px;
+
+      margin-bottom: 10px;
+
+      font-size: 38px;
+
+      letter-spacing: 4px;
+
+      color: #880020;
+
+      text-shadow:
+        0 2px 0 #ffffff,
+        0 4px 14px rgba(120,0,30,0.2);
+
+    }
+
+
+    h1::before {
+
+      content: "🌹";
+
+      margin-right: 12px;
+
+      font-size: 28px;
+
+    }
+
+
+    h1::after {
+
+      content: "🌹";
+
+      margin-left: 12px;
+
+      font-size: 28px;
+
+    }
+
+
+    p {
+
+      color: #7b4550;
+
+      font-size: 16px;
+
+      letter-spacing: 1px;
+
+      margin-bottom: 14px;
+
+    }
+
+
+    /* =========================
+       ROUND表示
+       ========================= */
+
+    #roundInfo {
+
+      margin-bottom: 10px;
+
+      font-size: 14px;
+
+      font-weight: bold;
+
+      color: #8b3146;
+
+    }
+
+
+    /* =========================
+       進捗表示
+       ========================= */
+
+    .progress-area {
+
+      width: 100%;
+
+      max-width: 420px;
+
+      margin: 0 auto 30px;
+
+    }
+
+
+    #progress {
+
+      display: inline-block;
+
+      min-width: 120px;
+
+      margin-bottom: 8px;
+
+      padding: 7px 18px;
+
+      font-size: 15px;
+
+      font-family: Arial, sans-serif;
+
+      font-weight: bold;
+
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #a9002f,
+          #6e001c
+        );
+
+      border-radius: 30px;
+
+      box-shadow:
+        0 5px 14px rgba(100,0,25,0.25);
+
+    }
+
+
+    .progress-bar {
+
+      width: 100%;
+
+      height: 8px;
+
+      background:
+        rgba(120,0,30,0.12);
+
+      border-radius: 20px;
+
+      overflow: hidden;
+
+    }
+
+
+    #progressFill {
+
+      width: 0%;
+
+      height: 100%;
+
+      background:
+        linear-gradient(
+          90deg,
+          #81001f,
+          #d13050
+        );
+
+      transition:
+        width 0.3s ease;
+
+    }
+
+
+    /* =========================
+       2択エリア
+       ========================= */
+
+    .battle {
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: stretch;
+
+      gap: 38px;
+
+      flex-wrap: wrap;
+
+      position: relative;
+
+    }
+
+
+    .battle::before {
+
+      content: "♥";
+
+      position: absolute;
+
+      left: 50%;
+
+      top: 47%;
+
+      transform:
+        translate(-50%, -50%);
+
+      font-size: 34px;
+
+      color: #a30028;
+
+      text-shadow:
+        0 2px 10px rgba(120,0,20,0.25);
+
+      z-index: 4;
+
+      pointer-events: none;
+
+    }
+
+
+    /* =========================
+       人物カード
+       ========================= */
+
+    .person {
+
+      width: 285px;
+
+      padding: 17px;
+
+      cursor: pointer;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.98),
+          rgba(255,239,242,0.96)
+        );
+
+      border:
+        2px solid #bf7d89;
+
+      border-radius: 22px;
+
+      box-shadow:
+        0 12px 28px rgba(80,0,20,0.16),
+        inset 0 0 0 5px rgba(255,255,255,0.75);
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+
+      position: relative;
+
+      user-select: none;
+
+      -webkit-tap-highlight-color: transparent;
+
+    }
+
+
+    .person::before {
+
+      content: "✦";
+
+      position: absolute;
+
+      top: 8px;
+
+      left: 11px;
+
+      color: #b46b7b;
+
+      font-size: 17px;
+
+    }
+
+
+    .person::after {
+
+      content: "✦";
+
+      position: absolute;
+
+      right: 11px;
+
+      bottom: 8px;
+
+      color: #b46b7b;
+
+      font-size: 17px;
+
+    }
+
+
+    .person:hover {
+
+      transform:
+        translateY(-6px)
+        scale(1.025);
+
+      border-color:
+        #8b001f;
+
+      box-shadow:
+        0 16px 35px rgba(90,0,25,0.23),
+        0 0 0 4px rgba(140,0,30,0.07);
+
+    }
+
+
+    .person:active {
+
+      transform:
+        scale(0.98);
+
+    }
+
+
+    /* =========================
+       2択写真
+       ========================= */
+
+    .photo {
+
+      width: 245px;
+
+      height: 310px;
+
+      margin: auto;
+
+      overflow: hidden;
+
+      background: #ddd;
+
+      border-radius: 13px;
+
+      border:
+        3px solid #8f1b36;
+
+      box-shadow:
+        0 6px 16px rgba(80,0,20,0.2);
+
+    }
+
+
+    .photo img {
+
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+
+      display: block;
+
+      transition:
+        transform 0.3s ease;
+
+    }
+
+
+    .person:hover .photo img {
+
+      transform:
+        scale(1.035);
+
+    }
+
+
+    /* =========================
+       名前
+       ========================= */
+
+    .name {
+
+      margin-top: 16px;
+
+      font-size: 21px;
+
+      font-weight: bold;
+
+      letter-spacing: 2px;
+
+      color: #70001c;
+
+    }
+
+
+    /* =========================
+       結果画面
+       ========================= */
+
+    #result {
+
+      display: none;
+
+      max-width: 760px;
+
+      padding:
+        28px 24px
+        35px;
+
+      background:
+        rgba(255,248,249,0.91);
+
+      border:
+        2px solid rgba(130,0,30,0.33);
+
+      border-radius: 25px;
+
+      box-shadow:
+        0 16px 40px rgba(90,0,25,0.14);
+
+    }
+
+
+    #result h2 {
+
+      margin-top: 2px;
+
+      margin-bottom: 5px;
+
+      font-size: 32px;
+
+      letter-spacing: 3px;
+
+      color: #880020;
+
+    }
+
+
+    #result h2::before {
+
+      content: "🌹 ";
+
+    }
+
+
+    #result h2::after {
+
+      content: " 🌹";
+
+    }
+
+
+    .result-message {
+
+      margin-top: 8px;
+
+      color: #87505c;
+
+      font-size: 14px;
+
+    }
+
+
+    /* =========================
+       TOP9
+       ========================= */
+
+    .ranking {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 15px;
+
+      justify-content:
+        center;
+
+      margin-top: 28px;
+
+    }
+
+
+    .rank-person {
+
+      min-width: 0;
+
+      padding: 8px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #ffffff,
+          #fff0f3
+        );
+
+      border:
+        2px solid #9d314a;
+
+      border-radius: 13px;
+
+      box-shadow:
+        0 5px 15px rgba(80,0,20,0.12);
+
+      position: relative;
+
+    }
+
+
+    .rank-person strong {
+
+      display: inline-block;
+
+      margin-bottom: 4px;
+
+      font-size: 15px;
+
+      color: #8c001f;
+
+    }
+
+
+    .rank-photo {
+
+      width: 100%;
+
+      aspect-ratio: 4 / 5;
+
+      margin: 5px auto;
+
+      overflow: hidden;
+
+      background: #ddd;
+
+      border:
+        2px solid #9d314a;
+
+      border-radius: 8px;
+
+    }
+
+
+    .rank-photo img {
+
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+
+      display: block;
+
+    }
+
+
+    .rank-name {
+
+      margin-top: 5px;
+
+      padding:
+        5px 2px
+        2px;
+
+      font-size: 15px;
+
+      font-weight: bold;
+
+      color: #680018;
+
+      letter-spacing: 1px;
+
+      overflow-wrap: anywhere;
+
+    }
+
+
+    /* =========================
+       1位：金
+       ========================= */
+
+    .rank-person:nth-child(1) {
+
+      border:
+        4px solid #d4af37;
+
+      box-shadow:
+        0 0 0 2px #fff3a8,
+        0 8px 24px rgba(170,125,0,0.38);
+
+    }
+
+
+    .rank-person:nth-child(1) strong {
+
+      color: #9b7300;
+
+      font-size: 18px;
+
+    }
+
+
+    .rank-person:nth-child(1) .rank-photo {
+
+      border:
+        3px solid #d4af37;
+
+    }
+
+
+    /* =========================
+       2位：銀
+       ========================= */
+
+    .rank-person:nth-child(2) {
+
+      border:
+        4px solid #b8b8b8;
+
+      box-shadow:
+        0 0 0 2px #efefef,
+        0 8px 22px rgba(80,80,80,0.26);
+
+    }
+
+
+    .rank-person:nth-child(2) strong {
+
+      color: #777777;
+
+      font-size: 18px;
+
+    }
+
+
+    .rank-person:nth-child(2) .rank-photo {
+
+      border:
+        3px solid #b8b8b8;
+
+    }
+
+
+    /* =========================
+       3位：銅
+       ========================= */
+
+    .rank-person:nth-child(3) {
+
+      border:
+        4px solid #b87333;
+
+      box-shadow:
+        0 0 0 2px #e6b78d,
+        0 8px 22px rgba(130,70,20,0.28);
+
+    }
+
+
+    .rank-person:nth-child(3) strong {
+
+      color: #96501f;
+
+      font-size: 18px;
+
+    }
+
+
+    .rank-person:nth-child(3) .rank-photo {
+
+      border:
+        3px solid #b87333;
+
+    }
+
+
+    /* =========================
+       ボタン
+       ========================= */
+
+    button {
+
+      margin-top: 30px;
+
+      padding:
+        13px 34px;
+
+      font-family: inherit;
+
+      font-size: 16px;
+
+      font-weight: bold;
+
+      letter-spacing: 2px;
+
+      cursor: pointer;
+
+      border:
+        1px solid #560012;
+
+      border-radius: 30px;
+
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ad002d,
+          #680017
+        );
+
+      box-shadow:
+        0 7px 16px rgba(80,0,20,0.24);
+
+      transition: 0.2s;
+
+      -webkit-tap-highlight-color: transparent;
+
+    }
+
+
+    button:hover {
+
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0 10px 22px rgba(80,0,20,0.29);
+
+    }
+
+
+    /* =========================
+       タブレット
+       ========================= */
+
+    @media (max-width: 850px) {
+
+      #game,
+      #result {
+
+        max-width: 100%;
+
+      }
+
+    }
+
+
+    /* =========================
+       スマホ
+       ========================= */
+
+    @media (max-width: 700px) {
+
+      body {
+
+        padding:
+          20px 6px
+          40px;
+
+      }
+
+
+      body::after {
+
+        top: 5px;
+        right: 5px;
+        bottom: 5px;
+        left: 5px;
+
+        border-radius: 18px;
+
+      }
+
+
+      body::before {
+
+        font-size: 25px;
+
+        line-height: 7;
+
+        opacity: 0.11;
+
+      }
+
+
+      h1 {
+
+        margin-top: 5px;
+
+        font-size: 24px;
+
+        letter-spacing: 1px;
+
+        line-height: 1.4;
+
+      }
+
+
+      h1::before,
+      h1::after {
+
+        font-size: 18px;
+
+        margin-left: 3px;
+
+        margin-right: 3px;
+
+      }
+
+
+      p {
+
+        font-size: 13px;
+
+        margin-bottom: 10px;
+
+      }
+
+
+      #roundInfo {
+
+        font-size: 12px;
+
+      }
+
+
+      .progress-area {
+
+        width: 90%;
+
+        max-width: 360px;
+
+        margin-bottom: 22px;
+
+      }
+
+
+      #progress {
+
+        font-size: 13px;
+
+        padding: 6px 15px;
+
+      }
+
+
+      .battle {
+
+        flex-wrap: nowrap;
+
+        gap: 8px;
+
+        align-items: stretch;
+
+      }
+
+
+      .battle::before {
+
+        font-size: 18px;
+
+      }
+
+
+      .person {
+
+        width: calc(50% - 8px);
+
+        min-width: 0;
+
+        padding: 7px;
+
+        border-radius: 13px;
+
+      }
+
+
+      .person::before,
+      .person::after {
+
+        font-size: 11px;
+
+      }
+
+
+      .photo {
+
+        width: 100%;
+
+        height: auto;
+
+        aspect-ratio: 4 / 5;
+
+        border-width: 2px;
+
+        border-radius: 9px;
+
+      }
+
+
+      .name {
+
+        margin-top: 8px;
+
+        font-size: 14px;
+
+        letter-spacing: 0.5px;
+
+        overflow-wrap: anywhere;
+
+      }
+
+
+      #result {
+
+        padding:
+          14px 6px
+          22px;
+
+        border-radius: 18px;
+
+      }
+
+
+      #result h2 {
+
+        font-size: 20px;
+
+        letter-spacing: 0.5px;
+
+        line-height: 1.4;
+
+      }
+
+
+      .result-message {
+
+        font-size: 11px;
+
+      }
+
+
+      .ranking {
+
+        grid-template-columns:
+          repeat(3, minmax(0, 1fr));
+
+        gap: 6px;
+
+        margin-top: 18px;
+
+      }
+
+
+      .rank-person {
+
+        padding: 4px;
+
+        min-width: 0;
+
+        border-radius: 8px;
+
+      }
+
+
+      .rank-person:nth-child(1),
+      .rank-person:nth-child(2),
+      .rank-person:nth-child(3) {
+
+        border-width: 3px;
+
+      }
+
+
+      .rank-photo {
+
+        width: 100%;
+
+        aspect-ratio: 4 / 5;
+
+        margin: 3px auto;
+
+        border-radius: 5px;
+
+      }
+
+
+      .rank-person strong {
+
+        font-size: 11px;
+
+      }
+
+
+      .rank-person:nth-child(1) strong,
+      .rank-person:nth-child(2) strong,
+      .rank-person:nth-child(3) strong {
+
+        font-size: 12px;
+
+      }
+
+
+      .rank-name {
+
+        padding: 3px 1px 1px;
+
+        font-size: 10px;
+
+        letter-spacing: 0;
+
+        overflow-wrap: anywhere;
+
+      }
+
+
+      button {
+
+        width: 90%;
+
+        max-width: 300px;
+
+        font-size: 15px;
+
+        padding:
+          12px 20px;
+
+      }
+
+    }
+
+
+    /* =========================
+       かなり小さいスマホ
+       ========================= */
+
+    @media (max-width: 380px) {
+
+      body {
+
+        padding-left: 4px;
+
+        padding-right: 4px;
+
+      }
+
+
+      h1 {
+
+        font-size: 21px;
+
+      }
+
+
+      .battle {
+
+        gap: 5px;
+
+      }
+
+
+      .battle::before {
+
+        font-size: 15px;
+
+      }
+
+
+      .person {
+
+        width: calc(50% - 5px);
+
+        padding: 5px;
+
+      }
+
+
+      .name {
+
+        font-size: 12px;
+
+      }
+
+
+      .ranking {
+
+        gap: 4px;
+
+      }
+
+
+      .rank-name {
+
+        font-size: 9px;
+
+      }
+
+
+      .rank-person strong {
+
+        font-size: 10px;
+
+      }
+
+    }
+
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <h1>好き顔9選メーカー</h1>
+
+
+  <div id="game">
+
+
+    <p>
+      より好きな方を選んでください
+    </p>
+
+
+    <div id="roundInfo"></div>
+
+
+    <div class="progress-area">
+
+      <div id="progress"></div>
+
+      <div class="progress-bar">
+
+        <div id="progressFill"></div>
+
+      </div>
+
+    </div>
+
+
+    <div class="battle">
+
+
+      <div
+        class="person"
+        id="leftPerson">
+
+        <div
+          class="photo"
+          id="leftPhoto">
+        </div>
+
+        <div
+          class="name"
+          id="leftName">
+        </div>
+
+      </div>
+
+
+      <div
+        class="person"
+        id="rightPerson">
+
+        <div
+          class="photo"
+          id="rightPhoto">
+        </div>
+
+        <div
+          class="name"
+          id="rightName">
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+
+  <div id="result">
+
+
+    <h2>あなたの好き顔9選</h2>
+
+
+    <div class="result-message">
+
+      全候補をバランスよく比較した結果です
+
+    </div>
+
+
+    <div
+      class="ranking"
+      id="ranking">
+    </div>
+
+
+    <button onclick="location.reload()">
+
+      もう一度やる
+
+    </button>
+
+
+  </div>
+
+
+
+<script>
+
+
+/* =========================
+   候補者一覧
+   ========================= */
+
+const members = [
+
+  {
+    name:"なんやこいつ",
+    image:"images/0f89ac9f-bf2c-4fe3-aa00-9d8d5858f24f.jpg",
+    rating:1500,
+    wins:0,
+    games:0
+  },
+
+  {
+    name:"岩下",
+    image:"images/2ae2a872-2486-4517-9b07-19624232476e.jpg",
+    rating:1500,
+    wins:0,
+    games:0
+  },
+
+
+  {
+    name:"イワシ",
+    image:"images/3c27d173-4d45-44ef-b9cd-f436243d51e8.jpg",
+    rating:1500,
+    wins:0,
+    games:0
+  },
+
+
+  {
+    name:"いわしたゆうと",
+    image:"images/33b90018-1942-471b-96ac-8bd189487c2d.jpg",
+    rating:1500,
+    wins:0,
+    games:0
+  },
+
+  {
+    name:"岩下",
+    image:"images/33b90018-1942-471b-96ac-8bd189487c2d.jpg",
+    rating:1500,
+    wins:0,
+    games:0
+  },
+ 
+  {
+    name:"岩下",
+    image:"images/bd21c3ff-295a-41e2-b295-c734f9947b31.jpg",
+    rating:1500,
+    wins:0,
+    games:0
+  },
+];
+
+
+/* =========================
+   比較回数設定
+   ========================= */
+
+const tournamentRounds = 7;
+
+
+/* =========================
+   Elo設定
+   ========================= */
+
+const K_FACTOR = 32;
+
+
+
+/* =========================
+   シャッフル
+   ========================= */
+
+function shuffle(array){
+
+  const copied =
+    [...array];
+
+
+  for(
+    let i =
+      copied.length - 1;
+
+    i > 0;
+
+    i--
+  ){
+
+    const j =
+      Math.floor(
+        Math.random()
+        * (i + 1)
+      );
+
+
+    [
+      copied[i],
+      copied[j]
+    ]
+    =
+    [
+      copied[j],
+      copied[i]
+    ];
+
+  }
+
+
+  return copied;
+
+}
+
+
+
+/* =========================
+   対戦表作成
+   ========================= */
+
+function createMatches(){
+
+  let players =
+    shuffle(members);
+
+
+  if(
+    players.length % 2 !== 0
+  ){
+
+    players.push(null);
+
+  }
+
+
+  const totalPlayers =
+    players.length;
+
+
+  const rotation =
+    [...players];
+
+
+  const matches = [];
+
+
+  const actualRounds =
+    Math.min(
+      tournamentRounds,
+      totalPlayers - 1
+    );
+
+
+  for(
+    let round = 0;
+
+    round < actualRounds;
+
+    round++
+  ){
+
+    for(
+      let i = 0;
+
+      i < totalPlayers / 2;
+
+      i++
+    ){
+
+      const playerA =
+        rotation[i];
+
+
+      const playerB =
+        rotation[
+          totalPlayers
+          - 1
+          - i
+        ];
+
+
+      if(
+        playerA !== null
+        &&
+        playerB !== null
+      ){
+
+        if(
+          Math.random() < 0.5
+        ){
+
+          matches.push({
+
+            left:
+              playerA,
+
+            right:
+              playerB,
+
+            round:
+              round + 1
+
+          });
+
+        }
+        else {
+
+          matches.push({
+
+            left:
+              playerB,
+
+            right:
+              playerA,
+
+            round:
+              round + 1
+
+          });
+
+        }
+
+      }
+
+    }
+
+
+    const fixed =
+      rotation[0];
+
+
+    const rest =
+      rotation.slice(1);
+
+
+    rest.unshift(
+      rest.pop()
+    );
+
+
+    rotation.splice(
+      0,
+      rotation.length,
+      fixed,
+      ...rest
+    );
+
+  }
+
+
+  return matches;
+
+}
+
+
+
+/* =========================
+   Elo計算
+   ========================= */
+
+function updateElo(
+  winner,
+  loser
+){
+
+  const expectedWinner =
+
+    1 /
+
+    (
+      1 +
+      Math.pow(
+        10,
+        (
+          loser.rating
+          -
+          winner.rating
+        )
+        /
+        400
+      )
+    );
+
+
+  const expectedLoser =
+
+    1 /
+
+    (
+      1 +
+      Math.pow(
+        10,
+        (
+          winner.rating
+          -
+          loser.rating
+        )
+        /
+        400
+      )
+    );
+
+
+  winner.rating =
+
+    winner.rating
+
+    +
+
+    K_FACTOR
+
+    *
+
+    (
+      1
+      -
+      expectedWinner
+    );
+
+
+  loser.rating =
+
+    loser.rating
+
+    +
+
+    K_FACTOR
+
+    *
+
+    (
+      0
+      -
+      expectedLoser
+    );
+
+
+  winner.wins++;
+
+  winner.games++;
+
+  loser.games++;
+
+}
+
+
+
+/* =========================
+   対戦開始
+   ========================= */
+
+const matches =
+  createMatches();
+
+
+let matchIndex = 0;
+
+
+let left = null;
+
+let right = null;
+
+
+
+function newBattle(){
+
+
+  if(
+    matchIndex
+    >=
+    matches.length
+  ){
+
+    showResult();
+
+    return;
+
+  }
+
+
+  const match =
+    matches[matchIndex];
+
+
+  left =
+    match.left;
+
+
+  right =
+    match.right;
+
+
+
+  document
+    .getElementById(
+      "leftName"
+    )
+    .textContent =
+      left.name;
+
+
+
+  document
+    .getElementById(
+      "leftPhoto"
+    )
+    .innerHTML =
+
+      '<img src="'
+      + left.image
+      + '" alt="'
+      + left.name
+      + '">';
+
+
+
+  document
+    .getElementById(
+      "rightName"
+    )
+    .textContent =
+      right.name;
+
+
+
+  document
+    .getElementById(
+      "rightPhoto"
+    )
+    .innerHTML =
+
+      '<img src="'
+      + right.image
+      + '" alt="'
+      + right.name
+      + '">';
+
+
+
+  document
+    .getElementById(
+      "roundInfo"
+    )
+    .textContent =
+
+      "ROUND "
+      +
+      match.round
+      +
+      " / "
+      +
+      tournamentRounds;
+
+
+
+  document
+    .getElementById(
+      "progress"
+    )
+    .textContent =
+
+      (matchIndex + 1)
+      +
+      " / "
+      +
+      matches.length;
+
+
+
+  const percentage =
+
+    (
+      matchIndex
+      /
+      matches.length
+    )
+    *
+    100;
+
+
+
+  document
+    .getElementById(
+      "progressFill"
+    )
+    .style.width =
+
+      percentage
+      +
+      "%";
+
+}
+
+
+
+/* =========================
+   左を選択
+   ========================= */
+
+document
+  .getElementById(
+    "leftPerson"
+  )
+  .onclick =
+  function(){
+
+
+    updateElo(
+      left,
+      right
+    );
+
+
+    matchIndex++;
+
+
+    newBattle();
+
+  };
+
+
+
+/* =========================
+   右を選択
+   ========================= */
+
+document
+  .getElementById(
+    "rightPerson"
+  )
+  .onclick =
+  function(){
+
+
+    updateElo(
+      right,
+      left
+    );
+
+
+    matchIndex++;
+
+
+    newBattle();
+
+  };
+
+
+
+/* =========================
+   結果表示
+   ========================= */
+
+function showResult(){
+
+
+  document
+    .getElementById(
+      "game"
+    )
+    .style.display =
+      "none";
+
+
+  document
+    .getElementById(
+      "result"
+    )
+    .style.display =
+      "block";
+
+
+
+  const sortedMembers =
+
+    [...members]
+    .sort(
+      function(a,b){
+
+        if(
+          b.rating
+          !==
+          a.rating
+        ){
+
+          return (
+            b.rating
+            -
+            a.rating
+          );
+
+        }
+
+
+        return (
+          b.wins
+          -
+          a.wins
+        );
+
+      }
+    );
+
+
+
+  const top9 =
+
+    sortedMembers
+    .slice(
+      0,
+      9
+    );
+
+
+
+  const ranking =
+
+    document
+    .getElementById(
+      "ranking"
+    );
+
+
+  ranking.innerHTML = "";
+
+
+
+  top9.forEach(
+    function(
+      member,
+      index
+    ){
+
+
+      const div =
+
+        document
+        .createElement(
+          "div"
+        );
+
+
+      div.className =
+        "rank-person";
+
+
+      div.innerHTML =
+
+        "<strong>"
+        +
+        (index + 1)
+        +
+        "位"
+        +
+        "</strong>"
+
+        +
+
+        "<div class='rank-photo'>"
+
+        +
+
+        "<img src='"
+        +
+        member.image
+        +
+        "' alt='"
+        +
+        member.name
+        +
+        "'>"
+
+        +
+
+        "</div>"
+
+        +
+
+        "<div class='rank-name'>"
+        +
+        member.name
+        +
+        "</div>";
+
+
+      ranking
+        .appendChild(
+          div
+        );
+
+    }
+  );
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+
+/* =========================
+   スタート
+   ========================= */
+
+newBattle();
+
+
+</script>
+
+
+</body>
+
+</html>
